@@ -2,20 +2,21 @@ import requests
 import time
 import json
 from queue import Queue
+import tushare as ts
 import threading
 
 
 # from lxml import etree
-
+# print(ts.get_hist_data())
 class StcokSpider:
 
-    def __init__(self, stock_code, market):
+    def __init__(self, stock_code, market): 
         self.stock_code = stock_code
         # self.start_url = 'http://quote.eastmoney.com/f1.html?code={}&market={}'.format(stock_code, market)
         # self.start_url = 'http://push2ex.eastmoney.com/getStockFenShi?pagesize=144&ut=7eea3edcaed734bea9cbfc24409ed989&dpt=wzfscj&pageindex=0&id=6005841&sort=1&ft=1&code=600584&market=1&_=1606196542606'
         # self.start_url = 'http://push2ex.eastmoney.com/getStockFenShi?pagesize=144&ut=7eea3edcaed734bea9cbfc24409ed989&dpt=wzfscj&pageindex=2&sort=1&ft=1&code=600584&market=1&_=1606269175713'
         # self.start_url = 'http://push2ex.eastmoney.com/getStockFenShi?pagesize=144&ut=7eea3edcaed734bea9cbfc24409ed989&dpt=wzfscj&pageindex=1&sort=1&ft=1&code=600584&market=1&_=1606289374382'
-        self.url = 'https://push2.eastmoney.com/api/qt/stock/details/get?secid=1.{}&ut=f057cbcbce2a86e2866ab8877db1d059&fields1=f1,f2,f3,f4,f5&fields2=f51,f52,f53,f54,f55&pos=-150&iscca=1&invt=2&_={}'.format(
+        self.url = 'https://push2.eastmoney.com/api/qt/stock/details/get?secid=1.{}&ut=f057cbcbce2a86e2866ab8877db1d059&fields1=f1,f2,f3,f4,f5&fields2=f51,f52,f53,f54,f55&pos=-550&iscca=1&invt=2&_={}'.format(
             self.stock_code, time.time())
         """
         pagesize：页码
